@@ -12,5 +12,17 @@
   <div class="w3-blue w3-xlarge">
     <p>Satellibus - Smart transport</p>
   </div>
+  <script>
+    fetch("https://sheets.googleapis.com/v4/spreadsheets/1_C38P-HcbtcSbUkNIgmLbSWQ_CSP3O3qoZi-Qq0ou9s/values/Arrets!A:D?key=AIzaSyAnXeNFcsaDIEW4tVTValvOiW5KySE8F9Q")
+      .then(response => {
+        console.log(response.json());
+      })
+    .then(data => {
+      console.log(data);
+    })
+    .catch(error => {
+      console.log(error.message);
+    })
+  </script>
 </body>
 </html>
