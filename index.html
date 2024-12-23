@@ -15,7 +15,7 @@
   <script>
     fetch("https://sheets.googleapis.com/v4/spreadsheets/1_C38P-HcbtcSbUkNIgmLbSWQ_CSP3O3qoZi-Qq0ou9s/values/Arrets!A:D?key=AIzaSyAnXeNFcsaDIEW4tVTValvOiW5KySE8F9Q")
       .then(response => {
-        const datas = response.json()[2];
+        const datas = response.json().values[0];
         console.log(datas);
         datas.forEach((stop) => {
           console.log('Arrêt n° ${stop[0]} - ${stop[1]}');
