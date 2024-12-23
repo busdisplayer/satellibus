@@ -43,7 +43,11 @@
             console.log(`Arrêt n° ${stop[0]} - ${stop[1]}`);
             var marker = L.marker([stop[2], stop[3]]).addTo(map);
             marker.bindPopup(`<b>${stop[1]}</b><br>${stop[4]}`);
-            stops.push(`{name : ${stop[1]}, coords : [${stop[2]},${stop[3]}], city : ${stop[4]}}`);
+            stops.push({
+            name : stop[1],
+            coords : [stop[2],stop[3]], 
+            city : stop[4]
+              });
           });
           console.log(stops);
         } else {
