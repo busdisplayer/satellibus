@@ -40,6 +40,7 @@
         if (data.values) {
           data.values.forEach((stop) => {
             console.log(`Arrêt n° ${stop[0]} - ${stop[1]}`);
+            var marker = L.marker([stop[2], stop[3]]).addTo(map);
           });
         } else {
           console.log('Aucune donnée trouvée.');
