@@ -29,7 +29,7 @@
     }).addTo(map);
 
     // Chargement des arrêts depuis Google Sheets
-    fetch("https://sheets.googleapis.com/v4/spreadsheets/1_C38P-HcbtcSbUkNIgmLbSWQ_CSP3O3qoZi-Qq0ou9s/values/Arrets!A:D?key=AIzaSyAnXeNFcsaDIEW4tVTValvOiW5KySE8F9Q")
+    fetch("https://sheets.googleapis.com/v4/spreadsheets/1_C38P-HcbtcSbUkNIgmLbSWQ_CSP3O3qoZi-Qq0ou9s/values/Arrets!A:E?key=AIzaSyAnXeNFcsaDIEW4tVTValvOiW5KySE8F9Q")
       .then(response => {
         if (!response.ok) {
           throw new Error(`Erreur HTTP : ${response.status}`);
