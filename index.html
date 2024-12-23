@@ -23,6 +23,7 @@
 
   <script>
     let stops = [];
+    let lines = [];
     // Initialisation de la carte
     var map = L.map('map').setView([4.5, 4.5], 15);
     L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
@@ -50,6 +51,32 @@
               });
           });
           console.log(stops);
+        } else {
+          console.log('Aucune donnée trouvée.');
+        }
+      })
+      .catch(error => {
+        console.error('Erreur lors de la récupération des données :', error.message);
+      });
+
+    fetch("https://sheets.googleapis.com/v4/spreadsheets/1_C38P-HcbtcSbUkNIgmLbSWQ_CSP3O3qoZi-Qq0ou9s/values/Lignes!A:E?key=AIzaSyAnXeNFcsaDIEW4tVTValvOiW5KySE8F9Q")
+      .then(response => {
+        if (!response.ok) {
+          throw new Error(`Erreur HTTP : ${response.status}`);
+        }
+        return response.json();
+      })
+      .then(data => {
+        if (data.values) {
+          data.values.forEach((line) => {
+            console.log(`Ligne n° ${line[0]} - ${line[1]}`);
+            lines.push({
+            name : line[1],
+            stops : line[2], 
+            dest : [line[3],line[4]]
+              });
+          });
+          console.log(lines);
         } else {
           console.log('Aucune donnée trouvée.');
         }
