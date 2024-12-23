@@ -16,22 +16,6 @@
     
   </div>
   <script>
-    let latitude;
-    let longitude;
-    let altitude;
-    navigator.geolocation.watchPosition(
-      (position) => {
-        latitude = position.coords.latitude;
-        longitude = position.coords.longitude;
-        altitude = position.coords.altitude;
-        map.setView([latitude, longitude],15);
-    },{
-      enableHighAccuracy : true,
-        timeout : 10000,
-        maximumAge = 0,
-    });
-  </script>
-  <script>
     var map = L.map('map').setView([4.5, 4.5],15);
     L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {attribution:"&copy; <a href='https://www.openstreetmap.org/copyright'>OpenStreetMap</a> contributors"}).addTo(map);
   </script>
@@ -47,6 +31,22 @@
     .catch(error => {
       console.log(error.message);
     })
+  </script>
+   <script>
+    let latitude;
+    let longitude;
+    let altitude;
+    navigator.geolocation.watchPosition(
+      (position) => {
+        latitude = position.coords.latitude;
+        longitude = position.coords.longitude;
+        altitude = position.coords.altitude;
+        map.setView([latitude, longitude],15);
+    },{
+      enableHighAccuracy : true,
+        timeout : 10000,
+        maximumAge : 0,
+    });
   </script>
 </body>
 </html>
