@@ -20,10 +20,14 @@
     <h1>Satellibus - Smart transport</h1>
   </div>
   <div id="map"></div>
+  <div>
+    <select id='chosenLine' onchange='changeLine()'></select>
+  </div>
 
   <script>
     let stops = [];
     let lines = [];
+    const select = document.getElementById('chosenLine');
     // Initialisation de la carte
     var map = L.map('map').setView([4.5, 4.5], 15);
     L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
@@ -75,6 +79,10 @@
             stops : line[2], 
             dest : [line[3],line[4]]
               });
+        const option = document.createElement("option"); // Création d'une <option>
+        option.textContent = `${line[1]} - ${line[3]} (${line[4]})`;                // Texte de l'option
+        option.value = line[0]; // Valeur de l'option
+        select.appendChild(option);
           });
           console.log(lines);
         } else {
