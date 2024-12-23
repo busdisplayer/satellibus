@@ -58,7 +58,7 @@
         latitude = position.coords.latitude;
         longitude = position.coords.longitude;
         altitude = position.coords.altitude;
-        map.setView([latitude, longitude], 10);
+        map.setView([latitude, longitude], 20);
       },
       (error) => {
         console.error('Erreur de géolocalisation :', error.message);
