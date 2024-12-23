@@ -17,6 +17,7 @@
       .then(response => {
         const datas = response.json();
         console.log(datas);
+        console.log(datas.values);
         datas.forEach((stop) => {
           console.log('Arrêt n° ${stop[0]} - ${stop[1]}');
         });
