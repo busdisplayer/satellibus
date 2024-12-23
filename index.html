@@ -41,7 +41,7 @@
           data.values.forEach((stop) => {
             console.log(`Arrêt n° ${stop[0]} - ${stop[1]}`);
             var marker = L.marker([stop[2], stop[3]]).addTo(map);
-            marker.bindPopup(<b>stop[1]<b>stop[4]<br>);
+            marker.bindPopup("<b>stop[1]</b>stop[4]<br>");
           });
         } else {
           console.log('Aucune donnée trouvée.');
