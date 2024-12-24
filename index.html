@@ -175,8 +175,9 @@ console.log(promptOSMR);
       })
       .then(data => {
         if (data.routes) {
-         const route = data.routes[0].geometry;
+         const route = data.routes[0].geometry.coordinates;
         const duration = data.routes[0].duration;
+          console.log(duration);
           var geojsonLayer = L.geoJSON(route).addTo(map);
         } else {
           console.log('Aucune donnée trouvée.');
