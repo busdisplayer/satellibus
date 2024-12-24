@@ -114,18 +114,23 @@
     );
   </script>
   <script>
+    let stopsInLine = [];
+    let line = [];
+    let chosenLine;
+    
     function changeLine() {
-      let chosenLine = parseInt(select.value);
+      chosenLine = parseInt(select.value);
       chosenLine += -1;
       console.log(chosenLine);
-      let line = [];
+    
       line = lines[chosenLine];
       console.log(line);
-      let stopsInLine = [];
+      
       stopsInLine = line.stops;
       console.log(stopsInLine);
       display(stopsInLine);
     }
+    
     function display(stopsToDisplay) {
       stopsToDisplay.forEach((stop) => {
         console.log(stop);
