@@ -189,7 +189,7 @@ console.log(`Durée estimée de la route : ${hours} heure${hours !== 1 ? 's' : '
 
 
       // Création d'un objet Leaflet GeoJSON pour afficher la route sur la carte
-      window.routeLayer = L.geoJSON(route, {
+     var geojsonLayer = L.geoJSON(route, {
         style: { color: 'blue', weight: 4, opacity: 0.7 }
       }).addTo(map);
 
