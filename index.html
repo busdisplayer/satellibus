@@ -166,28 +166,65 @@ nameThatLine.forEach((content) => {
 });
     promptOSMR = coordsThatLine.map(([a, b]) => `${String(a)},${String(b)}`).join(";");
 console.log(promptOSMR);
- fetch(`https://router.project-osrm.org/route/v1/driving/${promptOSMR}?overview=full&geometries=geojson`)
-      .then(response => {
-        if (!response.ok) {
-          throw new Error(`Erreur HTTP : ${response.status}`);
-        }
-        return response.json();
-      })
-      .then(data => {
-        if (data.routes) {
-         const route = data.routes[0].geometry;
-        const duration = data.routes[0].duration;
-          console.log(duration);
-        window.routeLayer = L.geoJSON(route, {
-                style: { color: 'blue', weight: 4, opacity: 0.7 }
-            }).addTo(map);
-        } else {
-          console.log('Aucune donnée trouvée.');
-        }
-      })
-      .catch(error => {
-        console.error('Erreur lors de la récupération des données :', error.message);
-      });
+ // Exemple de coordonnées (par exemple Paris -> Lyon)
+let coordsThatLine = [
+  [48.8566, 2.3522], // Paris
+  [45.7640, 4.8357]  // Lyon
+];
+
+// Conversion des coordonnées en chaîne de caractères avec le format attendu par l'API OSRM
+let promptOSMR = coordsThatLine.map(([a, b]) => `${String(a)},${String(b)}`).join(";");
+console.log("URL de la requête : " + promptOSMR);
+
+// Initialisation de la carte (si elle n'est pas déjà initialisée)
+var map = L.map('map').setView([48.8566, 2.3522], 6);  // Carte centrée sur Paris, zoom à 6
+
+// Ajout de la couche de tuiles OpenStreetMap
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+  attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+}).addTo(map);
+
+// Requête à l'API OSRM
+fetch(`https://router.project-osrm.org/route/v1/driving/${promptOSMR}?overview=full&geometries=geojson`)
+  .then(response => {
+    // Vérification de la réponse HTTP
+    if (!response.ok) {
+      throw new Error(`Erreur HTTP : ${response.status}`);
+    }
+    return response.json(); // Retourne la réponse sous forme JSON
+  })
+  .then(data => {
+    // Vérification de la présence de routes dans les données
+    if (data.routes && data.routes.length > 0) {
+      const route = data.routes[0].geometry; // Récupération de la géométrie de la route (GeoJSON)
+      const duration = data.routes[0].duration; // Récupération de la durée de la route
+      console.log(`Durée estimée de la route : ${duration} secondes`);
+
+      // Création d'un objet Leaflet GeoJSON pour afficher la route sur la carte
+      window.routeLayer = L.geoJSON(route, {
+        style: { color: 'blue', weight: 4, opacity: 0.7 }
+      }).addTo(map);
+
+      // Ajouter un marqueur au point de départ de la route
+      L.marker([coordsThatLine[0][0], coordsThatLine[0][1]])
+        .addTo(map)
+        .bindPopup("Départ : Paris")
+        .openPopup();
+
+      // Ajouter un marqueur au point d'arrivée de la route
+      L.marker([coordsThatLine[1][0], coordsThatLine[1][1]])
+        .addTo(map)
+        .bindPopup("Arrivée : Lyon");
+
+    } else {
+      console.log('Aucune donnée de route trouvée.');
+    }
+  })
+  .catch(error => {
+    // Gestion des erreurs
+    console.error('Erreur lors de la récupération des données :', error.message);
+  });
+
     }
   </script>
 </body>
