@@ -24,6 +24,11 @@
   <div class='w3-blue w3-select'>
     <select id='chosenLine' onchange='changeLine()'></select>
   </div>
+  <div class='w3-blue'>
+    <table id="stopsOfLine">
+      
+    </table>
+  </div>
 
   <script>
     let stops = [];
@@ -143,6 +148,19 @@
       });
       console.log(nameThatLine);
       console.log(coordsThatLine);
+
+     const table = document.getElementById('stopsOfLine');
+      table.innerHTML = '';
+nameThatLine.forEach((content) => {
+  // Créer une nouvelle ligne
+  const row = table.insertRow();
+
+  // Créer une cellule dans la ligne
+  const cell = row.insertCell();
+
+  // Ajouter le contenu de l'élément à la cellule
+  cell.textContent = content;
+});
     }
   </script>
 </body>
