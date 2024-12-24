@@ -198,7 +198,13 @@ fetch(`https://router.project-osrm.org/route/v1/driving/${promptOSMR}?overview=f
     if (data.routes && data.routes.length > 0) {
       const route = data.routes[0].geometry; // Récupération de la géométrie de la route (GeoJSON)
       const duration = data.routes[0].duration; // Récupération de la durée de la route
-      console.log(`Durée estimée de la route : ${duration} secondes`);
+     // Conversion de la durée en heures et minutes
+const hours = Math.floor(duration / 3600);  // Nombre d'heures
+const minutes = Math.floor((duration % 3600) / 60);  // Nombre de minutes restantes
+
+// Affichage de la durée en format heures:minutes
+console.log(`Durée estimée de la route : ${hours} heure${hours !== 1 ? 's' : ''} et ${minutes} minute${minutes !== 1 ? 's' : ''}`);
+
 
       // Création d'un objet Leaflet GeoJSON pour afficher la route sur la carte
       window.routeLayer = L.geoJSON(route, {
@@ -208,13 +214,13 @@ fetch(`https://router.project-osrm.org/route/v1/driving/${promptOSMR}?overview=f
       // Ajouter un marqueur au point de départ de la route
       L.marker([coordsThatLine[0][0], coordsThatLine[0][1]])
         .addTo(map)
-        .bindPopup("Départ : Paris")
+        .bindPopup("Départ")
         .openPopup();
 
       // Ajouter un marqueur au point d'arrivée de la route
       L.marker([coordsThatLine[1][0], coordsThatLine[1][1]])
         .addTo(map)
-        .bindPopup("Arrivée : Lyon");
+        .bindPopup("Terminus");
 
     } else {
       console.log('Aucune donnée de route trouvée.');
