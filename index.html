@@ -139,6 +139,8 @@
     }
     
     function display(stopsToDisplay) {
+      nameThatLine = [];
+      coordsThatLine = [];
       stopsToDisplay.forEach((stop) => {
         console.log(stop);
         console.log(stops[stop].name);
