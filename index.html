@@ -175,10 +175,10 @@ console.log(promptOSMR);
       })
       .then(data => {
         if (data.routes) {
-         const route = data.routes[0].geometry.coordinates;
+         const route = data.routes[0].geometry;
         const duration = data.routes[0].duration;
           console.log(duration);
-          var geojsonLayer = L.geoJSON(route).addTo(map);
+          var geojsonLayer = L.geoJSON({ type: "Feature", geometry: { type: "LineString", coordinates: route } }).addTo(map);
         } else {
           console.log('Aucune donnée trouvée.');
         }
