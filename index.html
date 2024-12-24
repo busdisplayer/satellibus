@@ -122,6 +122,14 @@
       console.log(line);
       let stopsInLine = line.stops;
       console.log(stopsInLine);
+      let stopsName = [];
+      let stopsCoords = [];
+      stopsInLine.forEach((stop) => {
+        stopsName.push(stops[parseInt(stop)][1]);
+        stopsCoords.push(stops[parseInt(stop)].coords);
+      });
+      console.log(stopsName);
+      console.log(stopsCoords);
     }
   </script>
 </body>
