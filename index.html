@@ -115,7 +115,7 @@
   </script>
   <script>
     function changeLine() {
-      let chosenLine = select.value.parseInt();
+      let chosenLine = parseInt(select.value);
       chosenLine += -1;
       console.log(chosenLine);
       let line = lines[chosenLine];
