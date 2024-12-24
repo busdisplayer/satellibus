@@ -187,7 +187,9 @@ const minutes = Math.floor((duration % 3600) / 60);  // Nombre de minutes restan
 // Affichage de la durée en format heures:minutes
 console.log(`Durée estimée de la route : ${hours} heure${hours !== 1 ? 's' : ''} et ${minutes} minute${minutes !== 1 ? 's' : ''}`);
 
-
+if (geojsonLayer) {
+        map.removeLayer(geojsonLayer);
+      }
       // Création d'un objet Leaflet GeoJSON pour afficher la route sur la carte
      var geojsonLayer = L.geoJSON(route, {
         style: { color: 'blue', weight: 4, opacity: 0.7 }
