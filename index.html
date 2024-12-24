@@ -164,8 +164,9 @@ nameThatLine.forEach((content) => {
   // Ajouter le contenu de l'élément à la cellule
   cell.textContent = content;
 });
-     promptOSMR = ";".join([`${String(a)},${String(b)}` for (a, b) of coordsThatLine]);
+    promptOSMR = coordsThatLine.map(([a, b]) => `${String(a)},${String(b)}`).join(";");
 console.log(promptOSMR);
+
     }
   </script>
 </body>
