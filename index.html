@@ -164,7 +164,7 @@ nameThatLine.forEach((content) => {
   // Ajouter le contenu de l'élément à la cellule
   cell.textContent = content;
 });
-    promptOSMR = coordsThatLine.map(([a, b]) => `${String(a)},${String(b)}`).join(";");
+    promptOSMR = coordsThatLine.map(([b, a]) => `${String(a)},${String(b)}`).join(";");
 console.log(promptOSMR);
 
 fetch(`https://router.project-osrm.org/route/v1/driving/${promptOSMR}?overview=full&geometries=geojson`)
