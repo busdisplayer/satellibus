@@ -166,7 +166,25 @@ nameThatLine.forEach((content) => {
 });
     promptOSMR = coordsThatLine.map(([a, b]) => `${String(a)},${String(b)}`).join(";");
 console.log(promptOSMR);
-
+ fetch(`https://router.project-osrm.org/route/v1/driving/${promptOSMR}?overview=full&geometries=geojson`)
+      .then(response => {
+        if (!response.ok) {
+          throw new Error(`Erreur HTTP : ${response.status}`);
+        }
+        return response.json();
+      })
+      .then(data => {
+        if (data.routes) {
+         const route = data.routes[0].geometry;
+        const duration = data.routes[0].duration;
+          var geojsonLayer = L.geoJSON(route).addTo(map);
+        } else {
+          console.log('Aucune donnée trouvée.');
+        }
+      })
+      .catch(error => {
+        console.error('Erreur lors de la récupération des données :', error.message);
+      });
     }
   </script>
 </body>
