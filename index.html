@@ -28,6 +28,8 @@
   <script>
     let stops = [];
     let lines = [];
+    let nameThatLine = [];
+    let coordsThatLine = [];
     const select = document.getElementById('chosenLine');
     // Initialisation de la carte
     var map = L.map('map').setView([4.5, 4.5], 15);
@@ -135,8 +137,12 @@
       stopsToDisplay.forEach((stop) => {
         console.log(stop);
         console.log(stops[stop].name);
+        nameThatLine.push(stops[stop].name);
         console.log(stops[stop].coords);
+        coordsThatLine.push(stops[stop].coords);
       });
+      console.log(nameThatLine);
+      console.log(coordsThatLine);
     }
   </script>
 </body>
