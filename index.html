@@ -166,25 +166,7 @@ nameThatLine.forEach((content) => {
 });
     promptOSMR = coordsThatLine.map(([a, b]) => `${String(a)},${String(b)}`).join(";");
 console.log(promptOSMR);
- // Exemple de coordonnées (par exemple Paris -> Lyon)
-let coordsThatLine = [
-  [48.8566, 2.3522], // Paris
-  [45.7640, 4.8357]  // Lyon
-];
 
-// Conversion des coordonnées en chaîne de caractères avec le format attendu par l'API OSRM
-let promptOSMR = coordsThatLine.map(([a, b]) => `${String(a)},${String(b)}`).join(";");
-console.log("URL de la requête : " + promptOSMR);
-
-// Initialisation de la carte (si elle n'est pas déjà initialisée)
-var map = L.map('map').setView([48.8566, 2.3522], 6);  // Carte centrée sur Paris, zoom à 6
-
-// Ajout de la couche de tuiles OpenStreetMap
-L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-  attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-}).addTo(map);
-
-// Requête à l'API OSRM
 fetch(`https://router.project-osrm.org/route/v1/driving/${promptOSMR}?overview=full&geometries=geojson`)
   .then(response => {
     // Vérification de la réponse HTTP
