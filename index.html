@@ -124,6 +124,7 @@
     let stopsInLine = [];
     let line = [];
     let chosenLine;
+    let promptOSMR;
     
     function changeLine() {
       chosenLine = parseInt(select.value);
@@ -163,6 +164,8 @@ nameThatLine.forEach((content) => {
   // Ajouter le contenu de l'élément à la cellule
   cell.textContent = content;
 });
+      promptOSMR = ";".join([f"{a},{b}" for a,b in coordsThatLine])
+      console.log(promptOSMR);
     }
   </script>
 </body>
