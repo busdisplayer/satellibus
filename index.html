@@ -211,17 +211,6 @@ console.log(`Durée estimée de la route : ${hours} heure${hours !== 1 ? 's' : '
         style: { color: 'blue', weight: 4, opacity: 0.7 }
       }).addTo(map);
 
-      // Ajouter un marqueur au point de départ de la route
-      L.marker([coordsThatLine[0][0], coordsThatLine[0][1]])
-        .addTo(map)
-        .bindPopup("Départ")
-        .openPopup();
-
-      // Ajouter un marqueur au point d'arrivée de la route
-      L.marker([coordsThatLine[1][0], coordsThatLine[1][1]])
-        .addTo(map)
-        .bindPopup("Terminus");
-
     } else {
       console.log('Aucune donnée de route trouvée.');
     }
